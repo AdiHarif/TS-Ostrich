@@ -1,0 +1,17 @@
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title></title>
+</head>
+<body>
+    <script src='../../../../common/common_rand.js'></script>
+	<!--PREAMBLE-->
+	<script src='./spmv.js'></script>
+	<script type='text/javascript'>
+		var result = JSON.stringify(spmvRun(50000, 2000, 0.01, 100));
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET", "/asmjs/" + result, false);
+                xmlhttp.send();
+	</script>
+</body>
+</html>
