@@ -25,7 +25,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-Math.commonRandom = (function() {
+commonRandom = (function() {
     var seed = 49734321;
     return function() {
         // Robert Jenkins' 32 bit integer hash function.
@@ -39,8 +39,8 @@ Math.commonRandom = (function() {
     };
 })();
 
-Math.commonRandomJS = function () {
-    return Math.abs(Math.commonRandom() / 0x7fffffff);
+commonRandomJS = function () {
+    return Math.abs(commonRandom() / 0x7fffffff);
 }
 
 
@@ -202,16 +202,16 @@ function lavamd(boxes1d) {
     // input (distances)
     rv_cpu = createArray(space_mem, dim_cpu.space_elem); //(FOUR_VECTOR*)malloc(dim_cpu.space_mem);
     for(i=0; i<dim_cpu.space_elem; i=i+1){
-        rv_cpu[i].v = (Math.commonRandom()%10 + 1) / 10.0;        // get a number in the range 0.1 - 1.0
-        rv_cpu[i].x = (Math.commonRandom()%10 + 1) / 10.0;        // get a number in the range 0.1 - 1.0
-        rv_cpu[i].y = (Math.commonRandom()%10 + 1) / 10.0;        // get a number in the range 0.1 - 1.0
-        rv_cpu[i].z = (Math.commonRandom()%10 + 1) / 10.0;        // get a number in the range 0.1 - 1.0
+        rv_cpu[i].v = (commonRandom()%10 + 1) / 10.0;        // get a number in the range 0.1 - 1.0
+        rv_cpu[i].x = (commonRandom()%10 + 1) / 10.0;        // get a number in the range 0.1 - 1.0
+        rv_cpu[i].y = (commonRandom()%10 + 1) / 10.0;        // get a number in the range 0.1 - 1.0
+        rv_cpu[i].z = (commonRandom()%10 + 1) / 10.0;        // get a number in the range 0.1 - 1.0
     }
 
     // input (charge)
     qv_cpu = new Float64Array(dim_cpu.space_elem); // (fp*)malloc(dim_cpu.space_mem2);
     for(i=0; i<dim_cpu.space_elem; i=i+1){
-        qv_cpu[i] = (Math.commonRandom()%10 + 1) / 10;            // get a number in the range 0.1 - 1.0
+        qv_cpu[i] = (commonRandom()%10 + 1) / 10;            // get a number in the range 0.1 - 1.0
     }
 
     // output (forces)

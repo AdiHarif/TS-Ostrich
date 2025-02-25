@@ -25,7 +25,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-Math.commonRandom = (function() {
+commonRandom = (function() {
     var seed = 49734321;
     return function() {
         // Robert Jenkins' 32 bit integer hash function.
@@ -39,8 +39,8 @@ Math.commonRandom = (function() {
     };
 })();
 
-Math.commonRandomJS = function () {
-    return Math.abs(Math.commonRandom() / 0x7fffffff);
+commonRandomJS = function () {
+    return Math.abs(commonRandom() / 0x7fffffff);
 }
 
 
@@ -163,8 +163,8 @@ function randomComplexArray(n){ // TA
     var i = new Float64Array(n);
 
     for(var j = 0; j < n; ++j){
-        r[j] = Math.commonRandomJS()*2 - 1;
-        i[j] = Math.commonRandomJS()*2 - 1;
+        r[j] = commonRandomJS()*2 - 1;
+        i[j] = commonRandomJS()*2 - 1;
     }
     return {"r": r, "i": i};
 }

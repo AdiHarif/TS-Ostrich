@@ -25,7 +25,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-Math.commonRandom = (function() {
+commonRandom = (function() {
     var seed = 49734321;
     return function() {
         // Robert Jenkins' 32 bit integer hash function.
@@ -39,8 +39,8 @@ Math.commonRandom = (function() {
     };
 })();
 
-Math.commonRandomJS = function () {
-    return Math.abs(Math.commonRandom() / 0x7fffffff);
+commonRandomJS = function () {
+    return Math.abs(commonRandom() / 0x7fffffff);
 }
 
 
@@ -71,9 +71,6 @@ Math.commonRandomJS = function () {
 if (typeof performance === "undefined") {
     performance = Date;
 }
-
-/*** The squashing function.  Currently, it's a sigmoid. ***/
-Math.random = Math.commonRandomJS;
 
 function squash(x) {
     return (1.0 / (1.0 + Math.exp(-x)));
@@ -107,7 +104,7 @@ function bpnn_randomize_array(w, m, n) {
         l = (m + 1) * (n + 1);
 
     for (i = 0; i < l; i++) {
-        w[i] = Math.random();
+        w[i] = commonRandomJS();
     }
 }
 
@@ -116,7 +113,7 @@ function loadInput(w, m, n) {
         l = (m + 1) * (n + 1);
 
     for (i = 1; i < l; i++) {
-        w[i] = Math.random();
+        w[i] = commonRandomJS();
     }
 }
 

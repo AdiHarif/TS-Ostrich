@@ -25,7 +25,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-Math.commonRandom = (function() {
+commonRandom = (function() {
     var seed = 49734321;
     return function() {
         // Robert Jenkins' 32 bit integer hash function.
@@ -39,8 +39,8 @@ Math.commonRandom = (function() {
     };
 })();
 
-Math.commonRandomJS = function () {
-    return Math.abs(Math.commonRandom() / 0x7fffffff);
+commonRandomJS = function () {
+    return Math.abs(commonRandom() / 0x7fffffff);
 }
 
 
@@ -167,10 +167,10 @@ function InitializeGraph(no_of_nodes) {
     }
 
     for (var i = 0; i < no_of_nodes; ++i) {
-        var no_of_edges = Math.abs(Math.commonRandom() % ( MAX_INIT_EDGES - MIN_EDGES + 1 )) + MIN_EDGES;
+        var no_of_edges = Math.abs(commonRandom() % ( MAX_INIT_EDGES - MIN_EDGES + 1 )) + MIN_EDGES;
         for (var j = 0; j < no_of_edges; ++j) {
-            var node_id = Math.abs(Math.commonRandom() % no_of_nodes);
-            var weight = Math.abs(Math.commonRandom() % ( MAX_WEIGHT - MIN_WEIGHT + 1 )) + MIN_WEIGHT;
+            var node_id = Math.abs(commonRandom() % no_of_nodes);
+            var weight = Math.abs(commonRandom() % ( MAX_WEIGHT - MIN_WEIGHT + 1 )) + MIN_WEIGHT;
 
             graph[i].push(edge(node_id, weight));
             graph[node_id].push(edge(i, weight));

@@ -25,7 +25,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-Math.commonRandom = (function() {
+commonRandom = (function() {
     var seed = 49734321;
     return function() {
         // Robert Jenkins' 32 bit integer hash function.
@@ -39,8 +39,8 @@ Math.commonRandom = (function() {
     };
 })();
 
-Math.commonRandomJS = function () {
-    return Math.abs(Math.commonRandom() / 0x7fffffff);
+commonRandomJS = function () {
+    return Math.abs(commonRandom() / 0x7fffffff);
 }
 
 
@@ -306,11 +306,11 @@ function runNeedle(dimensions, penalty, options)
 
     input_seq_1[0] = -1;
     for(i=1; i< max_rows ; i++){
-        input_seq_1[i] = Math.abs(Math.commonRandom()) % options.nb_possible_items;
+        input_seq_1[i] = Math.abs(commonRandom()) % options.nb_possible_items;
     }
     input_seq_2[0] = -1;
     for(j=1; j< max_cols ; j++){
-        input_seq_2[j] = Math.abs(Math.commonRandom()) % options.nb_possible_items;
+        input_seq_2[j] = Math.abs(commonRandom()) % options.nb_possible_items;
     }
 
     if (options.print_results) { console.log("Computing dynamic programming results"); }

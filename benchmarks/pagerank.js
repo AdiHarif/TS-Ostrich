@@ -25,7 +25,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-Math.commonRandom = (function() {
+commonRandom = (function() {
     var seed = 49734321;
     return function() {
         // Robert Jenkins' 32 bit integer hash function.
@@ -39,8 +39,8 @@ Math.commonRandom = (function() {
     };
 })();
 
-Math.commonRandomJS = function () {
-    return Math.abs(Math.commonRandom() / 0x7fffffff);
+commonRandomJS = function () {
+    return Math.abs(commonRandom() / 0x7fffffff);
 }
 
 
@@ -58,7 +58,7 @@ function random_pages(n, noutlinks, divisor){
     for(i=0; i<n; ++i){
         noutlinks[i] = 0;
         for(j=0; j<n; ++j){
-            if(i!=j && (Math.abs(Math.commonRandom())%divisor === 0)){
+            if(i!=j && (Math.abs(commonRandom())%divisor === 0)){
                 pages[i*n+j] = 1;
                 noutlinks[i] += 1;
             }
@@ -66,7 +66,7 @@ function random_pages(n, noutlinks, divisor){
 
         // the case with no outlinks is afunctioned
         if(noutlinks[i] == 0){
-            do { k = Math.abs(Math.commonRandom()) % n; } while ( k == i);
+            do { k = Math.abs(commonRandom()) % n; } while ( k == i);
             pages[i*n + k] = 1;
             noutlinks[i] = 1;
         }
