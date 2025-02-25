@@ -25,7 +25,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-commonRandom = (function() {
+let commonRandom = (function() {
     var seed = 49734321;
     return function() {
         // Robert Jenkins' 32 bit integer hash function.
@@ -39,7 +39,7 @@ commonRandom = (function() {
     };
 })();
 
-commonRandomJS = function () {
+let commonRandomJS = function () {
     return Math.abs(commonRandom() / 0x7fffffff);
 }
 
@@ -141,7 +141,7 @@ function transpose(m){
 }
 
 function fft2D(m){
-    var M = [];
+    var M: any[] = [];
     for(var i =0; i < m.length; ++i){
         M[i]  = fftSimple(m[i]["r"], m[i]["i"]);
     }
@@ -165,14 +165,14 @@ function randomComplexArray(n){ // TA
 }
 
 function randomComplexMatrix(n){
-    var M = [];
+    var M: any[] = [];
     for(var i = 0; i < n; ++i) M[i] = randomComplexArray(n); // TA
     return M;
 }
 
 
 function printComplexArray(r, i) { // TA
-    var a = [];
+    var a: any[] = [];
     for(var j=0; j < r.length; ++j) a[j] = r[j].toFixed(6) + " + " + i[j].toFixed(6) + "i";
     console.log(a.join("\n"));
 }

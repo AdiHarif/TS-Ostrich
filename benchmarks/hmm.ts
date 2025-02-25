@@ -25,7 +25,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-commonRandom = (function() {
+let commonRandom = (function() {
     var seed = 49734321;
     return function() {
         // Robert Jenkins' 32 bit integer hash function.
@@ -39,7 +39,7 @@ commonRandom = (function() {
     };
 })();
 
-commonRandomJS = function () {
+let commonRandomJS = function () {
     return Math.abs(commonRandom() / 0x7fffffff);
 }
 
@@ -149,7 +149,7 @@ function init_ones_dev(ones, nsymbols){
  * Supporting functions
  */
 function init_alpha(b_d, pi_d, nstates, alpha_d, ones_n_d, obs_t){
-    i = 0;
+    let i = 0;
     for(i = 0; i < nstates; ++i){
         alpha_d[i] = pi_d[i]*b_d[(obs_t*nstates)+i];
         ones_n_d[i] = 1.0;
@@ -538,7 +538,7 @@ function run_hmm_bwa(hmm, in_obs, iterations, threshold){
 
         /* check log_lik vs. threshold */
         if (threshold > 0 && iter > 0) {
-            if (fabs(pow(10,new_log_lik) - pow(10,old_log_lik)) < threshold) {
+            if (Math.abs(Math.pow(10,new_log_lik) - Math.pow(10,old_log_lik)) < threshold) {
                 break;
             }
         }
@@ -552,7 +552,7 @@ function run_hmm_bwa(hmm, in_obs, iterations, threshold){
 function bwa_hmm(v_, n_, s_, t_)
 {
     /* Initialize variables */
-    hmm = {};                /* Initial HMM */
+    let hmm: any = {};                /* Initial HMM */
     obs = {};                /* Observation sequence */
     var a;
     var b;
@@ -565,6 +565,8 @@ function bwa_hmm(v_, n_, s_, t_)
     var n = n_ || N;
     var v_model= v_;
     var i;
+
+    var t1 = 0, t2 = 0;
 
     if(!v_model){
         console.log("invalid arguments, must specify varying model");
@@ -709,4 +711,4 @@ function bwa_hmm(v_, n_, s_, t_)
 }
 
 
-bwa_hmm('n', 512)
+bwa_hmm('n', 512, undefined, undefined);

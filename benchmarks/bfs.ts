@@ -25,7 +25,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-commonRandom = (function() {
+let commonRandom = (function() {
     var seed = 49734321;
     return function() {
         // Robert Jenkins' 32 bit integer hash function.
@@ -39,7 +39,7 @@ commonRandom = (function() {
     };
 })();
 
-commonRandomJS = function () {
+let commonRandomJS = function () {
     return Math.abs(commonRandom() / 0x7fffffff);
 }
 
@@ -91,14 +91,14 @@ function BFSGraph(no_of_nodes, verbose) {
 
         for(var tid = 0; tid < no_of_nodes; ++tid) {
             if (h_graph_mask[tid]) {
-                h_graph_mask[tid] = false;
+                h_graph_mask[tid] = 0;
                 for ( var i = h_graph_nodes[tid].starting
                       ; i < (h_graph_nodes[tid].no_of_edges + h_graph_nodes[tid].starting)
                       ; ++i) {
                     var id = h_graph_edges[i];
                     if (!h_graph_visited[id]) {
                         h_cost[id] = h_cost[tid] + 1;
-                        h_updating_graph_mask[id] = true;
+                        h_updating_graph_mask[id] = 1;
                     }
                 }
             }
@@ -106,10 +106,10 @@ function BFSGraph(no_of_nodes, verbose) {
 
         for (var tid = 0; tid < no_of_nodes; ++tid) {
             if (h_updating_graph_mask[tid]) {
-                h_graph_mask[tid] = true;
-                h_graph_visited[tid] = true;
+                h_graph_mask[tid] = 1;
+                h_graph_visited[tid] = 1;
                 stop = true;
-                h_updating_graph_mask[tid] = false;
+                h_updating_graph_mask[tid] = 0;
             }
         }
         ++k;
@@ -119,7 +119,7 @@ function BFSGraph(no_of_nodes, verbose) {
     var traversal_time = t2 - t1;
 
     var total_cost = 0;
-    for (var i=0; i<no_of_nodes; ++i) {
+    for (let i=0; i<no_of_nodes; ++i) {
         total_cost += h_cost[i];
     }
     if (no_of_nodes == expected_no_of_nodes) {
@@ -134,7 +134,7 @@ function BFSGraph(no_of_nodes, verbose) {
     console.log("Traversal time: " + (traversal_time/1000) + " s");
 
     if (verbose) {
-        for (var i = 0; i < no_of_nodes; ++i) {
+        for (let i = 0; i < no_of_nodes; ++i) {
             console.log(i + ") cost: " + h_cost[i]);
         }
     }
@@ -162,7 +162,7 @@ function InitializeGraph(no_of_nodes) {
     }
 
     for (var i = 0; i < no_of_nodes; ++i) {
-        var no_of_edges = Math.abs(commonRandom() % ( MAX_INIT_EDGES - MIN_EDGES + 1 )) + MIN_EDGES;
+        let no_of_edges = Math.abs(commonRandom() % ( MAX_INIT_EDGES - MIN_EDGES + 1 )) + MIN_EDGES;
         for (var j = 0; j < no_of_edges; ++j) {
             var node_id = Math.abs(commonRandom() % no_of_nodes);
             var weight = Math.abs(commonRandom() % ( MAX_WEIGHT - MIN_WEIGHT + 1 )) + MIN_WEIGHT;
@@ -174,17 +174,17 @@ function InitializeGraph(no_of_nodes) {
 
     var total_edges = 0;
     for (var i = 0; i < no_of_nodes; ++i) {
-        var no_of_edges = graph[i].length;
+        let no_of_edges = graph[i].length;
         h_graph_nodes[i] = node(total_edges, no_of_edges);
-        h_graph_mask[i] = false;
-        h_updating_graph_mask[i] = false;
-        h_graph_visited[i] = false;
+        h_graph_mask[i] = 0;
+        h_updating_graph_mask[i] = 0;
+        h_graph_visited[i] = 0;
 
         total_edges += no_of_edges;
     }
 
-    h_graph_mask[source] = true;
-    h_graph_visited[source] = true;
+    h_graph_mask[source] = 1;
+    h_graph_visited[source] = 1;
 
     var h_graph_edges = new Array(total_edges);
 
@@ -212,4 +212,4 @@ function InitializeGraph(no_of_nodes) {
 }
 
 
-BFSGraph(3000000)
+BFSGraph(3000000, false);

@@ -25,7 +25,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-commonRandom = (function() {
+let commonRandom = (function() {
     var seed = 49734321;
     return function() {
         // Robert Jenkins' 32 bit integer hash function.
@@ -39,7 +39,7 @@ commonRandom = (function() {
     };
 })();
 
-commonRandomJS = function () {
+let commonRandomJS = function () {
     return Math.abs(commonRandom() / 0x7fffffff);
 }
 
@@ -123,7 +123,7 @@ var expected_values = [-22.848189418846398979213, 0.486575877054862770965,
 function printMatrix(matrix){
     var size = Math.sqrt(matrix.length);
     for(var i = 0; i <size; ++i){
-        var row = []
+        var row: any[] = []
         for(var j = 0; j < size; ++j){
             row.push(matrix[i*size+j]);
         }
@@ -233,8 +233,8 @@ function ludRun(size, doVerify){
     console.log("Creating random matrix");
     randomMatrix(matrix);
 
+    var original = new Float64Array(matrix.length);
     if (doVerify) {
-        var original = new Float64Array(matrix.length);
         for (var i=0; i < matrix.length; ++i) {
             original[i] = matrix[i];
         }

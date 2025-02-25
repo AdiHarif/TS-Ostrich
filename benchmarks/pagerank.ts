@@ -25,7 +25,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-commonRandom = (function() {
+let commonRandom = (function() {
     var seed = 49734321;
     return function() {
         // Robert Jenkins' 32 bit integer hash function.
@@ -39,7 +39,7 @@ commonRandom = (function() {
     };
 })();
 
-commonRandomJS = function () {
+let commonRandomJS = function () {
     return Math.abs(commonRandom() / 0x7fffffff);
 }
 
@@ -158,7 +158,7 @@ function runPageRank(n, iter, thresh, divisor){
         if (page_ranks.length !== expected_page_ranks.length) {
             throw new Error("Invalid length of page_ranks array");
         }
-        for (var i = 0; i < expected_page_ranks; ++i) {
+        for (var i = 0; i < expected_page_ranks.length; ++i) {
             if (page_ranks[i] !== expected_page_ranks[i]) {
                 throw new Error("ERROR: page_ranks[" + i + "] differs from the expected value");
             }

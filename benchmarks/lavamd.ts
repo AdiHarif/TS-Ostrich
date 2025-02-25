@@ -25,7 +25,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-commonRandom = (function() {
+let commonRandom = (function() {
     var seed = 49734321;
     return function() {
         // Robert Jenkins' 32 bit integer hash function.
@@ -39,7 +39,7 @@ commonRandom = (function() {
     };
 })();
 
-commonRandomJS = function () {
+let commonRandomJS = function () {
     return Math.abs(commonRandom() / 0x7fffffff);
 }
 
@@ -76,7 +76,7 @@ function DOT(A,B) {
 }
 
 function createArray(creator, size) {
-    var arr = [];
+    var arr: any[] = [];
     for(var i=0; i<size; i++) {
         arr.push(creator());
     }
@@ -117,7 +117,7 @@ function lavamd(boxes1d) {
     var i, j, k, l, m, n, expected_boxes1d = 6;
 
     // system memory
-    var par_cpu = {}, dim_cpu = {}, box_cpu = [], rv_cpu = [], qv_cpu, fv_cpu = [], nh;
+    var par_cpu: any = {}, dim_cpu: any = {}, box_cpu: any[] = [], rv_cpu: any[] = [], qv_cpu, fv_cpu: any[] = [], nh;
     var expectedAns = [4144561.0, 181665.0, -190914.0, 140373.0];
 
     // assign default values

@@ -30,7 +30,7 @@ var data = [127, 114, 137, 157, 152, 145, 123, 112, 154, 183, 147, 120, 138, 149
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-commonRandom = (function() {
+let commonRandom = (function() {
     var seed = 49734321;
     return function() {
         // Robert Jenkins' 32 bit integer hash function.
@@ -44,7 +44,7 @@ commonRandom = (function() {
     };
 })();
 
-commonRandomJS = function () {
+let commonRandomJS = function () {
     return Math.abs(commonRandom() / 0x7fffffff);
 }
 
@@ -74,38 +74,38 @@ commonRandomJS = function () {
  * SOFTWARE.
  */
 
-Nr = 502;
-Nc = 458;
-Ne = Nr*Nc;
+let Nr = 502;
+let Nc = 458;
+let Ne = Nr*Nc;
 
-r1     = 0;											// top row index of ROI
-r2     = Nr - 1;									// bottom row index of ROI
-c1     = 0;											// left column index of ROI
-c2     = Nc - 1;									// right column index of ROI
+let r1     = 0;											// top row index of ROI
+let r2     = Nr - 1;									// bottom row index of ROI
+let c1     = 0;											// left column index of ROI
+let c2     = Nc - 1;									// right column index of ROI
 
 // ROI image size
-NeROI = (r2-r1+1)*(c2-c1+1);						// number of elements in ROI, ROI size
+let NeROI = (r2-r1+1)*(c2-c1+1);						// number of elements in ROI, ROI size
 
 // allocate variables for surrounding pixels
-iN = new Int32Array(Nr);							// north surrounding element
-iS = new Int32Array(Nr);							// south surrounding element
-jW = new Int32Array(Nc);							// west surrounding element
-jE = new Int32Array(Nc);							// east surrounding element
+let iN = new Int32Array(Nr);							// north surrounding element
+let iS = new Int32Array(Nr);							// south surrounding element
+let jW = new Int32Array(Nc);							// west surrounding element
+let jE = new Int32Array(Nc);							// east surrounding element
 
 // allocate variables for directional derivatives
-dN = new Float32Array(Ne);							// north direction derivative
-dS = new Float32Array(Ne);							// south direction derivative
-dW = new Float32Array(Ne);							// west direction derivative
-dE = new Float32Array(Ne);							// east direction derivative
+let dN = new Float32Array(Ne);							// north direction derivative
+let dS = new Float32Array(Ne);							// south direction derivative
+let dW = new Float32Array(Ne);							// west direction derivative
+let dE = new Float32Array(Ne);							// east direction derivative
 
 // allocate variable for diffusion coefficient
-c  = new Float32Array(Ne);							// diffusion coefficient
+let c  = new Float32Array(Ne);							// diffusion coefficient
 // N/S/W/E indices of surrounding pixels (every element of IMAGE)
-for (i=0; i<Nr; i++) {
+for (let i=0; i<Nr; i++) {
     iN[i] = i-1;									// holds index of IMAGE row above
     iS[i] = i+1;									// holds index of IMAGE row below
 }
-for (j=0; j<Nc; j++) {
+for (let j=0; j<Nc; j++) {
     jW[j] = j-1;									// holds index of IMAGE column on the left
     jE[j] = j+1;									// holds index of IMAGE column on the right
 }
@@ -120,13 +120,13 @@ jE[Nc-1] = Nc-1;									// changes IMAGE rightmost column index from Nc to Nc-1
 // var canvas = document.getElementById("canvas");
 // var ctx = canvas.getContext("2d");
 
-var image, data, q0sqr;
+var image, q0sqr;
 
 var expectedOutput = 52608;
 
 //write image
 function writeImage() {
-    for(i=0; i<Ne; i++) {
+    for(let i=0; i<Ne; i++) {
         data[i] = /*Math.round*/(Math.log(image[i])*255)|0;
     }
     /*ctx.clearRect(0, 0, Nc, Nr);
@@ -136,8 +136,8 @@ function writeImage() {
 function calculateSum() {
     var sum=0;
     var sum2=0;
-    for (i=r1; i<=r2; i++) {                                // do for the range of rows in ROI
-        for (j=c1; j<=c2; j++) {                            // do for the range of columns in ROI
+    for (let i=r1; i<=r2; i++) {                                // do for the range of rows in ROI
+        for (let j=c1; j<=c2; j++) {                            // do for the range of columns in ROI
             var tmp   = image[i + Nr*j];                        // get coresponding value in IMAGE
             sum  += tmp;                                    // take corresponding value and add to sum
             sum2 += tmp*tmp;                                // take square of corresponding value and add to sum2
@@ -149,8 +149,8 @@ function calculateSum() {
 }
 
 function calculateDiffusion() {
-    for (j=0; j<Nc; j++) {                                  // do for the range of columns in IMAGE
-        for (i=0; i<Nr; i++) {                              // do for the range of rows in IMAGE
+    for (let j=0; j<Nc; j++) {                                  // do for the range of columns in IMAGE
+        for (let i=0; i<Nr; i++) {                              // do for the range of rows in IMAGE
             // current index/pixel
             var k = i + Nr*j;                                   // get position of current element
             var Jc = image[k];                                  // get value of the current element
@@ -164,7 +164,7 @@ function calculateDiffusion() {
             var G2 = (dN[k]*dN[k] + dS[k]*dS[k] +               // gradient (based on derivatives)
                     dW[k]*dW[k] + dE[k]*dE[k]) / (Jc*Jc);
             // normalized discrete laplacian (equ 54)
-            L = (dN[k] + dS[k] + dW[k] + dE[k]) / Jc;       // laplacian (based on derivatives)
+            let L = (dN[k] + dS[k] + dW[k] + dE[k]) / Jc;       // laplacian (based on derivatives)
 
             // ICOV (equ 31/35)
             var num  = (0.5*G2) - ((1.0/16.0)*(L*L)) ;          // num (based on gradient and laplacian)
@@ -186,9 +186,9 @@ function calculateDiffusion() {
 
 function adjustValues(lambda) {
     lambda = 0.25*lambda;
-    for (j=0; j<Nc; j++) {                                  // do for the range of columns in IMAGE
+    for (let j=0; j<Nc; j++) {                                  // do for the range of columns in IMAGE
             // printf("NUMBER OF THREADS: %d\n", omp_get_num_threads());
-        for (i=0; i<Nr; i++) {                              // do for the range of rows in IMAGE
+        for (let i=0; i<Nr; i++) {                              // do for the range of rows in IMAGE
             // current index
             var k = i + Nr*j;                                   // get position of current element
             // diffusion coefficent
@@ -205,7 +205,7 @@ function adjustValues(lambda) {
 }
 
 function SRAD(niter,lambda) {
-    for (iter=0; iter<niter; iter++) {
+    for (let iter=0; iter<niter; iter++) {
         
         calculateSum();
         // directional derivatives, ICOV, diffusion coefficent
@@ -220,19 +220,19 @@ function SRAD(niter,lambda) {
 function runSRAD(niter,lambda) {
     var output = 0;
     image = new Float32Array(Ne);
-    for(i=0; i<Ne; i++) {
+    for(let i=0; i<Ne; i++) {
         image[i] = Math.exp(data[i]/255);
     }
-    time0 = performance.now();
+    let time0 = performance.now();
     SRAD(niter,lambda);
-    time1 = performance.now();
+    let time1 = performance.now();
     writeImage();
 
-    for (i=0; i<Nr; i++) {
+    for (let i=0; i<Nr; i++) {
         output = output + data[i];
     }
 
-    if (niter === 500 & lambda === 1) {
+    if (niter === 500 && lambda === 1) {
         if (output !== expectedOutput) {
             console.log("ERROR: expected output of '"+expectedOutput+"' but received '"+output+"' instead");
         }

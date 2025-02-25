@@ -25,7 +25,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-commonRandom = (function() {
+let commonRandom = (function() {
     var seed = 49734321;
     return function() {
         // Robert Jenkins' 32 bit integer hash function.
@@ -39,7 +39,7 @@ commonRandom = (function() {
     };
 })();
 
-commonRandomJS = function () {
+let commonRandomJS = function () {
     return Math.abs(commonRandom() / 0x7fffffff);
 }
 
@@ -92,8 +92,6 @@ function bpnn_internal_create(n_in, n_hidden, n_out) {
 
     this.input_prev_weights = new Float64Array((n_in + 1) * (1 + n_hidden));
     this.hidden_prev_weights = new Float64Array((n_hidden + 1) * (1 + n_out)); // TA
-
-    return this;
 }
 
 function bpnn_randomize_array(w, m, n) {

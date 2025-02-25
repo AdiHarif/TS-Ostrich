@@ -25,7 +25,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-commonRandom = (function() {
+let commonRandom = (function() {
     var seed = 49734321;
     return function() {
         // Robert Jenkins' 32 bit integer hash function.
@@ -39,7 +39,7 @@ commonRandom = (function() {
     };
 })();
 
-commonRandomJS = function () {
+let commonRandomJS = function () {
     return Math.abs(commonRandom() / 0x7fffffff);
 }
 
@@ -160,7 +160,7 @@ if (CHECK_ACCESS_BOUNDS) {
 }
 
 function to_int_values(s) {
-    var a = [];
+    var a: any[] = [];
     for (var i = 0; i < s.length; ++i) {
         a.push(to_int(s[i]));
     }
@@ -189,39 +189,39 @@ var max_rows = 0;
 var reference, input_itemsets, aligned_seq_1, aligned_seq_2, input_seq_1, input_seq_2;
 
 function needle(penalty, options) {
-	for (i = 1 ; i < max_cols; i++){
-        for (j = 1 ; j < max_rows; j++){
+	for (let i = 1 ; i < max_cols; i++){
+        for (let j = 1 ; j < max_rows; j++){
             reference[input_index(i,j)] = blosum62[(input_seq_1[i]*24) + input_seq_2[j]];
         }
     }
-    for(i = 1; i< max_rows ; i++)
+    for(let i = 1; i< max_rows ; i++)
         input_itemsets[input_index(i,0)] = -i * penalty;
-    for(j = 1; j< max_cols ; j++)
+    for(let j = 1; j< max_cols ; j++)
         input_itemsets[input_index(0,j)] = -j * penalty;
 
     if (options.use_parallelizable_version) {
         //Compute top-left matrix
-        for(i = 0 ; i < max_cols-2 ; i++){
-            for( idx = 0 ; idx <= i ; idx++){
-                index = (idx + 1) * max_cols + (i + 1 - idx);
+        for(let i = 0 ; i < max_cols-2 ; i++){
+            for(let idx = 0 ; idx <= i ; idx++){
+                let index = (idx + 1) * max_cols + (i + 1 - idx);
                 input_itemsets[index]= maximum( input_itemsets[index-1-max_cols]+ reference[index],
                                                 input_itemsets[index-1]         - penalty,
                                                 input_itemsets[index-max_cols]  - penalty);
             }
         }
         //Compute bottom-right matrix
-        for (k = max_rows; k <= 2*(max_rows-1); ++k) {
-            for (l = 0; l < 2*(max_rows-1) - k + 1; ++l) {
-                index = input_index(max_rows-1-l,k-max_cols+1+l);
+        for (let k = max_rows; k <= 2*(max_rows-1); ++k) {
+            for (let l = 0; l < 2*(max_rows-1) - k + 1; ++l) {
+                let index = input_index(max_rows-1-l,k-max_cols+1+l);
                 input_itemsets[index]= maximum( input_itemsets[index-1-max_cols]+ reference[index],
                         input_itemsets[index-1]         - penalty,
                         input_itemsets[index-max_cols]  - penalty);
             }
         }
     } else {
-        for (i = 1; i < max_rows; ++i) {
-            for (j = 1; j < max_cols; ++j) {
-                index = input_index(i,j);
+        for (let i = 1; i < max_rows; ++i) {
+            for (let j = 1; j < max_cols; ++j) {
+                let index = input_index(i,j);
                 input_itemsets[index] = maximum(
                     input_itemsets[index-1-max_cols] + reference[index],
                     input_itemsets[index-1]-penalty,
@@ -252,7 +252,7 @@ function runNeedle(dimensions, penalty, options)
     if (options === undefined) {
         options = default_options;
     } else {
-        for (var n in default_options) {
+        for (let n in default_options) {
             if (default_options.hasOwnProperty(n) && !options.hasOwnProperty(n)) {
                 options[n] = default_options[n];
             }
@@ -262,7 +262,7 @@ function runNeedle(dimensions, penalty, options)
 
     var penalty,idx, index;
     var size;
-    var t1, t2;
+    var t1 = 0, t2 = 0;
     var i,j;
 
     max_rows = dimensions + 1;
@@ -308,6 +308,8 @@ function runNeedle(dimensions, penalty, options)
     var aligned_index_2 = aligned_seq_size - 1;
 
     for (i = max_rows - 1, j = max_cols - 1; !(i==0 && j==0);) {
+        w = 0;
+        n = 0;
         if (i > 0 && j > 0) {
             var nw = input_itemsets[input_index(i-1,j-1)] + reference[input_index(i,j)];
             var w = input_itemsets[input_index(i,j-1)] - penalty;
@@ -357,4 +359,4 @@ function runNeedle(dimensions, penalty, options)
 }
 
 
-runNeedle(4096,1)
+runNeedle(4096, 1, undefined)

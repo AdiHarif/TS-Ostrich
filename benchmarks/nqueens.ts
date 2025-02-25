@@ -25,7 +25,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-commonRandom = (function() {
+let commonRandom = (function() {
     var seed = 49734321;
     return function() {
         // Robert Jenkins' 32 bit integer hash function.
@@ -39,7 +39,7 @@ commonRandom = (function() {
     };
 })();
 
-commonRandomJS = function () {
+let commonRandomJS = function () {
     return Math.abs(commonRandom() / 0x7fffffff);
 }
 
@@ -152,7 +152,7 @@ function nqueen_solver(size, board_mask, mask, left_mask, right_mask, unique_sol
     var border_mask = 0;
     var index;
 
-    forbidden = new Uint32Array(32);
+    let forbidden = new Uint32Array(32);
 
     masks[0] = mask;
     left_masks[0] = left_mask;
@@ -301,7 +301,7 @@ function nqueenJS(size, unique_solutions)
 	unique_solutions["solutions"] += u_solutions["solutions"];
     }
 
-    timing = size;
+    let timing = size;
     return solutions;
 }
 
