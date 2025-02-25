@@ -68,9 +68,6 @@ commonRandomJS = function () {
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-if (typeof performance === "undefined") {
-    performance = Date;
-}
 
 function squash(x) {
     return (1.0 / (1.0 + Math.exp(-x)));

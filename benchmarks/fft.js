@@ -69,11 +69,6 @@ commonRandomJS = function () {
  * SOFTWARE.
  */
 
-
-if (typeof performance === "undefined") {
-    performance = Date;
-}
-
 function complexPolar(r, t){
     return { "r": r*Math.cos(t), "i": r*Math.sin(t)};
 }

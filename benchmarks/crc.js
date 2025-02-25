@@ -69,11 +69,6 @@ commonRandomJS = function () {
  * SOFTWARE.
  */
 
-
-if (typeof performance === "undefined") {
-    performance = Date;
-}
-
 var crc32Lookup=new Uint32Array([
     0x00000000,0x77073096,0xEE0E612C,0x990951BA,0x076DC419,0x706AF48F,0xE963A535,0x9E6495A3,
     0x0EDB8832,0x79DCB8A4,0xE0D5E91E,0x97D2D988,0x09B64C2B,0x7EB17CBD,0xE7B82D07,0x90BF1D91,
@@ -334,9 +329,6 @@ var crc32Lookup=new Uint32Array([
     0xFF6B144A,0x33C114D4,0xBD4E1337,0x71E413A9,0x7B211AB0,0xB78B1A2E,0x39041DCD,0xF5AE1D53,
     0x2C8E0FFF,0xE0240F61,0x6EAB0882,0xA201081C,0xA8C40105,0x646E019B,0xEAE10678,0x264B06E6 
 ]);
-
-if (typeof performance === "undefined")
-    performance = Date;
 
 function crc32_8bytes(data, i, length){
     var current = data; // data is already a Uint32Array

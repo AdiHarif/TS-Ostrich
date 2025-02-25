@@ -76,9 +76,6 @@ var bit_mask3 = parseInt("0xf0f0f0f0", 16);
 var bit_mask4 = parseInt("0xff00ff00", 16);
 var bit_mask5 = parseInt("0xffff0000", 16);
 
-if (typeof performance === "undefined")
-    performance = Date;
-
 function bit_scan(x){
     var res = 0;
     res |= (x & bit_mask1 ) ? 1 : 0;

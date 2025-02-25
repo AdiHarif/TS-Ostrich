@@ -64,10 +64,6 @@ Math.commonRandomJS = function () {
 }
 */
 
-if (typeof performance === "undefined") {
-    performance = Date;
-}
-
 function randomMatrix(matrix, max, min) {
     for(var i = 0; i < matrix.length; ++i) {
 	//matrix[i] = Math.random()*(max-min) + min;

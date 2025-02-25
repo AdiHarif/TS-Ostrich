@@ -69,11 +69,6 @@ commonRandomJS = function () {
  * SOFTWARE.
  */
 
-
-if (typeof performance === "undefined") {
-    performance = Date;
-}
-
 var NUMBER_PAR_PER_BOX = 100;
 
 function DOT(A,B) {

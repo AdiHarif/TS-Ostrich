@@ -69,11 +69,6 @@ commonRandomJS = function () {
  * SOFTWARE.
  */
 
-
-if (typeof performance === "undefined") {
-    performance = Date;
-}
-
 var expected_row_indices = [690, 9, 359, 36, 162, 515, 62, 35, 861, 335, 860,
 548, 533, 958, 317, 514, 414, 333, 537, 420, 347, 933, 356, 714, 958, 648, 391,
 536, 44, 965, 423, 962, 744, 434, 568, 463, 980, 905, 188, 541, 617, 216, 312,

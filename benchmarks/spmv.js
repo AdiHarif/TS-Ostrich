@@ -69,10 +69,6 @@ commonRandomJS = function () {
  * SOFTWARE.
  */
 
-if (typeof performance === "undefined") {
-    performance = Date;
-}
-
 ArrayOld = Array;
 Array = function(dim) {
     var xs = new ArrayOld(dim);
