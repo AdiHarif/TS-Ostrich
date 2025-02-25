@@ -245,3 +245,6 @@ function runSRAD(niter,lambda) {
              options: "runSRAD(" + [niter, lambda].join(",") + ")",
              time: (time1 - time0) / 1000 };
 }
+
+
+runSRAD(500,1)

@@ -326,3 +326,6 @@ function runNQueens(size){
              options: 'runNQueens(' + size + ')',
              time: (t2-t1)/1000 };
 }
+
+
+runNQueens(16)

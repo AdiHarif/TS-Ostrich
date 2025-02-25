@@ -215,3 +215,6 @@ function InitializeGraph(no_of_nodes) {
         h_graph_edges: h_graph_edges
     }
 }
+
+
+BFSGraph(3000000)

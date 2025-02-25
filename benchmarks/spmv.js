@@ -322,3 +322,6 @@ function spmvRun(dim, density, stddev, iterations) {
              options: "spmvRun(" + [dim, density, stddev].join(",") + ")",
              time: (t2 - t1) / 1000 };
 }
+
+
+spmvRun(50000, 2000, 0.01, 100)

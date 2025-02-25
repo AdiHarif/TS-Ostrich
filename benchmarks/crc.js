@@ -415,3 +415,6 @@ function runCRC(numPages, pageSize, numExecs){
              options: "runCRC(" + [numPages, pageSize, numExecs].join(",") + ")",
              time: cumulativeTime / 1000 };
 }
+
+
+runCRC(128,65536,150)

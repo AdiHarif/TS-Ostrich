@@ -276,3 +276,5 @@ function backprop_face(layer_size) {
 function runBackProp(nb_input_elems) {
     return backprop_face(nb_input_elems);
 }
+
+runBackProp(2850000)

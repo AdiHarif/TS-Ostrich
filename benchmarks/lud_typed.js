@@ -123,3 +123,6 @@ function ludRun(size) {
              options: "ludRun(" + size + ")",
              time: (t2-t1) / 1000 };
 }
+
+
+ludRun(1024)

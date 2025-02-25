@@ -371,3 +371,6 @@ function runNeedle(dimensions, penalty, options)
              options: "runNeedle(" + [dimensions, penalty].join(",") + ")",
              time: (t2-t1)/1000 };
 }
+
+
+runNeedle(4096,1)

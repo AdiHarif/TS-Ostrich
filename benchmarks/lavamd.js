@@ -299,3 +299,6 @@ function kernel_cpu(par, dim, box, rv, qv, fv) {
 function runLavaMD(boxes1d) {
     return lavamd(boxes1d);
 }
+
+
+runLavaMD(6)

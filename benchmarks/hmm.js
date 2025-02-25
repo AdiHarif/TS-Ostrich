@@ -712,3 +712,6 @@ function bwa_hmm(v_, n_, s_, t_)
              options: "bwa_hmm(" + [v_, n_, s_, t_].join(",") + ")",
              time: (t2-t1)/1000 };
 }
+
+
+bwa_hmm('n', 512)

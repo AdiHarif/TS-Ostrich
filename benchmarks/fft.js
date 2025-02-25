@@ -216,3 +216,6 @@ function runFFT(twoExp){
              options: "runFFT(" + twoExp + ")",
              time: (t2 - t1) / 1000 };
 }
+
+
+runFFT(10)

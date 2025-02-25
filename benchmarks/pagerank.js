@@ -180,3 +180,6 @@ function runPageRank(n, iter, thresh, divisor){
              options: "runPageRank(" + [n, iter, thresh, divisor].join(",") + ")",
              time: (t2-t1)/1000 };
 }
+
+
+runPageRank(5000, 10, 0.00000001, 100000)
