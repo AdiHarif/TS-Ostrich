@@ -304,13 +304,13 @@ function runNeedle(dimensions, penalty, options)
     var aligned_index_1 = aligned_seq_size - 1;
     var aligned_index_2 = aligned_seq_size - 1;
 
-    for (i = max_rows - 1, j = max_cols - 1; !(i==0 && j==0);) {
-        w = 0;
-        n = 0;
+    for (let i = max_rows - 1, j = max_cols - 1; !(i==0 && j==0);) {
+        let w = 0;
+        let n = 0;
         if (i > 0 && j > 0) {
             var nw = input_itemsets[input_index(i-1,j-1)] + reference[input_index(i,j)];
-            var w = input_itemsets[input_index(i,j-1)] - penalty;
-            var n = input_itemsets[input_index(i-1,j)] - penalty;
+            w = input_itemsets[input_index(i,j-1)] - penalty;
+            n = input_itemsets[input_index(i-1,j)] - penalty;
             var n_limit = false;
             var w_limit = false;
             var traceback = maximum(nw,w,n);
