@@ -251,12 +251,9 @@ function runNeedle(dimensions, penalty, options)
 
     if (options === undefined) {
         options = default_options;
-    } else {
-        for (let n in default_options) {
-            if (default_options.hasOwnProperty(n) && !options.hasOwnProperty(n)) {
-                options[n] = default_options[n];
-            }
-        }
+    }
+    else {
+        throw new Error("ERROR: Unsupported number of arguments");
     }
 
 
