@@ -73,25 +73,41 @@ function squash(x) {
     return (1.0 / (1.0 + Math.exp(-x)));
 }
 
-function bpnn_internal_create(n_in, n_hidden, n_out) {
-    //var newnet = Object.create(BPNN);
+class bpnn_internal {
+    public input_n: number;
+    public hidden_n: number;
+    public output_n: number;
+    public input_units: Float64Array;
+    public hidden_units: Float64Array;
+    public output_units: Float64Array;
+    public hidden_delta: Float64Array;
+    public output_delta: Float64Array;
+    public target: Float64Array;
+    public input_weights: Float64Array;
+    public hidden_weights: Float64Array;
+    public input_prev_weights: Float64Array;
+    public hidden_prev_weights: Float64Array;
 
-    this.input_n = n_in;
-    this.hidden_n = n_hidden;
-    this.output_n = n_out;
-    this.input_units = new Float64Array(n_in + 1);
-    this.hidden_units = new Float64Array(n_hidden + 1);
-    this.output_units = new Float64Array(n_out + 1);
+    constructor(n_in, n_hidden, n_out) {
+        //var newnet = Object.create(BPNN);
 
-    this.hidden_delta = new Float64Array(n_hidden + 1);
-    this.output_delta = new Float64Array(n_out + 1);
-    this.target = new Float64Array(n_out + 1);
+        this.input_n = n_in;
+        this.hidden_n = n_hidden;
+        this.output_n = n_out;
+        this.input_units = new Float64Array(n_in + 1);
+        this.hidden_units = new Float64Array(n_hidden + 1);
+        this.output_units = new Float64Array(n_out + 1);
 
-    this.input_weights = new Float64Array((n_in + 1) * (n_hidden + 1)); // TA
-    this.hidden_weights = new Float64Array((n_hidden + 1) * (1 + n_out)); // TA
+        this.hidden_delta = new Float64Array(n_hidden + 1);
+        this.output_delta = new Float64Array(n_out + 1);
+        this.target = new Float64Array(n_out + 1);
 
-    this.input_prev_weights = new Float64Array((n_in + 1) * (1 + n_hidden));
-    this.hidden_prev_weights = new Float64Array((n_hidden + 1) * (1 + n_out)); // TA
+        this.input_weights = new Float64Array((n_in + 1) * (n_hidden + 1)); // TA
+        this.hidden_weights = new Float64Array((n_hidden + 1) * (1 + n_out)); // TA
+
+        this.input_prev_weights = new Float64Array((n_in + 1) * (1 + n_hidden));
+        this.hidden_prev_weights = new Float64Array((n_hidden + 1) * (1 + n_out)); // TA
+    }
 }
 
 function bpnn_randomize_array(w, m, n) {
@@ -121,7 +137,7 @@ function bpnn_randomize_row(w, m) {
 function bpnn_create(n_in, n_hidden, n_out) {
     var newnet;
 
-    newnet = new bpnn_internal_create(n_in, n_hidden, n_out);
+    newnet = new bpnn_internal(n_in, n_hidden, n_out);
 
     bpnn_randomize_array(newnet.input_weights, n_in, n_hidden);
     bpnn_randomize_array(newnet.hidden_weights, n_hidden, n_out);
