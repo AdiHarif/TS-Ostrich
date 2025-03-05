@@ -25,21 +25,21 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-let commonRandom = (function() {
-    var seed = 49734321;
-    return function() {
-        // Robert Jenkins' 32 bit integer hash function.
-        seed = ((seed + 0x7ed55d16) + (seed << 12))  & 0xffffffff;
-        seed = ((seed ^ 0xc761c23c) ^ (seed >>> 19)) & 0xffffffff;
-        seed = ((seed + 0x165667b1) + (seed << 5))   & 0xffffffff;
-        seed = ((seed + 0xd3a2646c) ^ (seed << 9))   & 0xffffffff;
-        seed = ((seed + 0xfd7046c5) + (seed << 3))   & 0xffffffff;
-        seed = ((seed ^ 0xb55a4f09) ^ (seed >>> 16)) & 0xffffffff;
-        return seed;
-    };
-})();
 
-let commonRandomJS = function () {
+var seed = 49734321;
+
+function commonRandom() {
+    // Robert Jenkins' 32 bit integer hash function.
+    seed = ((seed + 0x7ed55d16) + (seed << 12))  & 0xffffffff;
+    seed = ((seed ^ 0xc761c23c) ^ (seed >>> 19)) & 0xffffffff;
+    seed = ((seed + 0x165667b1) + (seed << 5))   & 0xffffffff;
+    seed = ((seed + 0xd3a2646c) ^ (seed << 9))   & 0xffffffff;
+    seed = ((seed + 0xfd7046c5) + (seed << 3))   & 0xffffffff;
+    seed = ((seed ^ 0xb55a4f09) ^ (seed >>> 16)) & 0xffffffff;
+    return seed;
+}
+
+function commonRandomJS() {
     return Math.abs(commonRandom() / 0x7fffffff);
 }
 
@@ -273,7 +273,7 @@ function backprop_face(layer_size) {
 
     //console.log("Output: " + net.output_units[1].toFixed(4) + "\t" + net.output_delta[1].toFixed(4));
     net = null;
-    console.log("Computation time: " + (time1 - time0) / 1000 + " s\n");
+    console.log("Computation time: " + (time1 - time0) / 1000 + " s");
     return {
         status: 1,
         options: "runBackProp(" + layer_size + ")",
