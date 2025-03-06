@@ -395,7 +395,7 @@ function runCRC(numPages, pageSize, numExecs){
         // coercion because JS does not have an unsigned 32 bit data type
         // to compare against
         if (finalCrc !== (expectedCrc | 0)) {
-            throw new Error("Invalid crc check, received '" + finalCrc + "' while expecting '" + (expectedCrc|0)  + "'(signed) [or '" + (expectedCrc) + "'(unsigned)]");
+            throw new Error("Invalid crc check, received '" + finalCrc + "' while expecting '" + (expectedCrc|0)  + "'(signed) (or '" + (expectedCrc) + "'(unsigned))");
         }
     }
     cumulativeTime += performance.now() - t1;

@@ -159,7 +159,7 @@ function runPageRank(n, iter, thresh, divisor){
         }
         for (var i = 0; i < expected_page_ranks.length; ++i) {
             if (page_ranks[i] !== expected_page_ranks[i]) {
-                throw new Error("ERROR: page_ranks[" + i + "] differs from the expected value");
+                throw new Error("ERROR: page_ranks(" + i + ") differs from the expected value");
             }
         }
 
@@ -167,9 +167,11 @@ function runPageRank(n, iter, thresh, divisor){
         console.log("WARNING: No self-checking for n = '" + n + "', iteration = '" + iter + "', threshold = '" + thresh + "', and divisor = '" + divisor + "'");
     }
 
-    console.log("T reached "+ t+ " at max dif " + max_diff + "\n");
+    console.log("T reached "+ t+ " at max dif " + max_diff);
+    console.log("");
 
-    console.log("The total time taken for a random web of " + n + " pages is " +(t2-t1)/1000 + " seconds\n");
+    console.log("The total time taken for a random web of " + n + " pages is " +(t2-t1)/1000 + " seconds");
+    console.log("");
 
     return { status: 1,
              options: "runPageRank(" + [n, iter, thresh, divisor].join(",") + ")",

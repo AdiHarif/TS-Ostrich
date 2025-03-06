@@ -126,7 +126,8 @@ function lavamd(boxes1d) {
         console.log("ERROR: Wrong value to -boxes1d parameter, cannot be <=0");
         return;
     }
-    console.log("Configuration used: cores = %d, boxes1d = %d\n", dim_cpu.cores_arg, dim_cpu.boxes1d_arg);
+    console.log("Configuration used: cores = %d, boxes1d = %d")
+    console.log(dim_cpu.cores_arg, dim_cpu.boxes1d_arg);
 
     // INPUTS
     par_cpu.alpha = 0.5;
@@ -223,11 +224,12 @@ function lavamd(boxes1d) {
             sum.z += fv_cpu[i].z;
         }
         if(Math.round(sum.v) != expectedAns[0] || Math.round(sum.x) != expectedAns[1] || Math.round(sum.y) != expectedAns[2] || Math.round(sum.z) != expectedAns[3]) {
-            console.log("Expected: [" + expectedAns[0] + ", " + expectedAns[1] + ", " + expectedAns[2] + ", " + expectedAns[3] + "]");
-            console.log("Got: [" + sum.v + ", " + sum.x + ", " + sum.y + ", " + sum.z + "]");
+            console.log("Expected: (" + expectedAns[0] + ", " + expectedAns[1] + ", " + expectedAns[2] + ", " + expectedAns[3] + ")");
+            console.log("Got: (" + sum.v + ", " + sum.x + ", " + sum.y + ", " + sum.z + ")");
         }
     } else {
-        console.log("WARNING: no self-checking for input size of '%d'\n", dim_cpu.boxes1d_arg);
+        console.log("WARNING: no self-checking for input size of '%d'");
+        console.log(dim_cpu.boxes1d_arg);
     }
 
     time1 = performance.now();

@@ -256,12 +256,16 @@ function generateRandomCSR(dim, density, stddev) {
     }
 
     nz_error = (Math.abs(m.num_nonzeros - m.Arow[m.num_rows]))/m.num_nonzeros;
-    if(nz_error >= 0.5)
-     console.log("WARNING: Actual NNZ differs from Theoretical NNZ by" +
-             nz_error*100+ "%\n");
+    if(nz_error >= 0.5) {
+        console.log("WARNING: Actual NNZ differs from Theoretical NNZ by" +
+            nz_error*100+ "%");
+        console.log("");
+    }
+
 
     m.num_nonzeros = m.Arow[m.num_rows];
-    console.log("Actual NUM_nonzeros: " + m.num_nonzeros + "\n");
+    console.log("Actual NUM_nonzeros: " + m.num_nonzeros);
+    console.log("");
 
     m.density_perc = m.num_nonzeros*100.0/(m.num_cols*m.num_rows);
     m.density_ppm = Math.round(m.density_perc * 10000.0);

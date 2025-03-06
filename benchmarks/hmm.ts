@@ -616,9 +616,11 @@ function bwa_hmm(v_, n_, s_, t_)
         var t2 = performance.now();
 
         console.log("The time is " + (t2-t1)/1000 + " seconds");
-        console.log("Observations\tLog_likelihood\n");
+        console.log("Observations\tLog_likelihood");
+        console.log("");
         console.log(n + "\t");
-        console.log(log_lik + "\n");
+        console.log(log_lik);
+        console.log("");
 
     } else if(v_model == 's'){
         /* Create observation sequence */
@@ -658,9 +660,11 @@ function bwa_hmm(v_, n_, s_, t_)
         var t2 = performance.now();
 
         console.log("The time is " + (t2-t1)/1000 + " seconds");
-        console.log("Observations\tLog_likelihood\n");
+        console.log("Observations\tLog_likelihood");
+        console.log("")
         console.log(s +"\t");
-        console.log(log_lik + "\n");
+        console.log(log_lik);
+        console.log("")
 
     } else if(v_model == 't')
     {
@@ -700,9 +704,11 @@ function bwa_hmm(v_, n_, s_, t_)
         var t2 = performance.now();
 
         console.log("The time is " + (t2-t1)/1000 + " seconds");
-        console.log("Observations\tLog_likelihood\n");
+        console.log("Observations\tLog_likelihood");
+        console.log("");
         console.log(t + "\t");
-        console.log(log_lik + "\n");
+        console.log(log_lik);
+        console.log("");
     }
     return { status: 1,
              options: "bwa_hmm(" + [v_, n_, s_, t_].join(",") + ")",
