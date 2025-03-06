@@ -119,16 +119,16 @@ var expected_values = [-22.848189418846398979213, 0.486575877054862770965,
 5.205758093407768960503, -0.241207430471430422925, 0.660969548700828801735,
 1.781811506239100006965, 1.750625326806120041212];
 
-function printMatrix(matrix){
-    var size = Math.sqrt(matrix.length);
-    for(var i = 0; i <size; ++i){
-        var row: any[] = []
-        for(var j = 0; j < size; ++j){
-            row.push(matrix[i*size+j]);
-        }
-        console.log(row.join(" "));
-    }
-}
+// function printMatrix(matrix){
+//     var size = Math.sqrt(matrix.length);
+//     for(var i = 0; i <size; ++i){
+//         var row: any[] = []
+//         for(var j = 0; j < size; ++j){
+//             row.push(matrix[i*size+j]);
+//         }
+//         console.log(row.join(" "));
+//     }
+// }
 
 
 function randomMatrix(matrix){

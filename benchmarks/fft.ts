@@ -170,16 +170,16 @@ function randomComplexMatrix(n){
 }
 
 
-function printComplexArray(r, i) { // TA
-    var a: any[] = [];
-    for(var j=0; j < r.length; ++j) a[j] = r[j].toFixed(6) + " + " + i[j].toFixed(6) + "i";
-    console.log(a.join("\n"));
-}
+// function printComplexArray(r, i) { // TA
+//     var a: any[] = [];
+//     for(var j=0; j < r.length; ++j) a[j] = r[j].toFixed(6) + " + " + i[j].toFixed(6) + "i";
+//     console.log(a.join("\n"));
+// }
 
-function printComplexMatrix(m){
-    for(var i = 0; i < m.length; ++i)
-        printComplexArray(m[i]["r"], m[i]["i"]);
-}
+// function printComplexMatrix(m){
+//     for(var i = 0; i < m.length; ++i)
+//         printComplexArray(m[i]["r"], m[i]["i"]);
+// }
 
 
 function runFFT(twoExp){
