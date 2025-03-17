@@ -263,7 +263,7 @@ function ludRun(size, doVerify){
         ludVerify(original, matrix);
     }
 
-    console.log("Time consumed untyped (s): " + ((t2-t1) / 1000).toFixed(6));
+    console.log("Time consumed untyped (s): " + ((t2-t1) / 1000));
     return { status: 1,
              options: "ludRun(" + size + ")",
              time: (t2-t1) / 1000 };

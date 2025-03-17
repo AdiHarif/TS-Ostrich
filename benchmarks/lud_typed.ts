@@ -113,7 +113,7 @@ function ludRun(size) {
     var t1 = performance.now();
     lud(size);
     var t2 = performance.now();
-    console.log("Time consumed typed (s): " + ((t2-t1) / 1000).toFixed(6));
+    console.log("Time consumed typed (s): " + ((t2-t1) / 1000));
     return { status: 1,
              options: "ludRun(" + size + ")",
              time: (t2-t1) / 1000 };
