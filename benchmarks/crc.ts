@@ -363,9 +363,12 @@ function randCRC(numPages, pageSize){
     var numWords = pageSize/4;
     var page = new Uint32Array(numPages*numWords); // TA
 
-    Array.prototype.forEach.call(page, function(v, i, a) {
-        a[i] = commonRandom();
-    });
+    for (let i=0; i<page.length; ++i) {
+        page[i] = commonRandom();
+    }
+    // Array.prototype.forEach.call(page, function(v, i, a) {
+    //     a[i] = commonRandom();
+    // });
 
     return page;
 }

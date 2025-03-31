@@ -270,4 +270,4 @@ function ludRun(size, doVerify){
 }
 
 
-ludRun(1024)
+ludRun(1024, undefined)

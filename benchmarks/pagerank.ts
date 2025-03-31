@@ -53,9 +53,11 @@ function random_pages(n, noutlinks, divisor){
     for(i=0; i<n; ++i){
         noutlinks[i] = 0;
         for(j=0; j<n; ++j){
-            if(i!=j && (Math.abs(commonRandom())%divisor === 0)){
-                pages[i*n+j] = 1;
-                noutlinks[i] += 1;
+            if(i!=j) {
+                if (Math.abs(commonRandom())%divisor === 0) {
+                    pages[i*n+j] = 1;
+                    noutlinks[i] += 1;
+                }
             }
         }
 
@@ -95,7 +97,7 @@ function reduce_page_rank(page_ranks, maps, n){
         old_rank = page_ranks[j];
         new_rank = 0.0;
         for(i=0; i<n; ++i){
-          new_rank += maps[i*n + j];
+          new_rank += maps[i*n+ j];
         }
 
         new_rank = ((1-d_factor)/n)+(d_factor*new_rank);
