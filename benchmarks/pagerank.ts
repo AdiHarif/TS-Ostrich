@@ -53,9 +53,11 @@ function random_pages(n, noutlinks, divisor){
     for(i=0; i<n; ++i){
         noutlinks[i] = 0;
         for(j=0; j<n; ++j){
-            if(i!=j && (Math.abs(commonRandom())%divisor === 0)){
-                pages[i*n+j] = 1;
-                noutlinks[i] += 1;
+            if(i!=j) {
+                if (Math.abs(commonRandom())%divisor === 0) {
+                    pages[i*n+j] = 1;
+                    noutlinks[i] += 1;
+                }
             }
         }
 
